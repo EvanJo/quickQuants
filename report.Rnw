@@ -1,0 +1,93 @@
+\documentclass{scrartcl}
+\usepackage[a4paper]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{sectsty}
+\graphicspath{{www/}}
+\allsectionsfont{\sffamily}
+\begin{document}
+\title{Financial Performance for }
+\author{\includegraphics[width=3cm]{monkey.jpg} \\ \href{https://evan.shinyapps.io/quickquants}{Quick Quants}}
+\maketitle
+<<getReactiveData,echo=FALSE,message=FALSE,warning=FALSE,results='hide'>>=
+# #static stuff to test knit locally. Comment out when using for realz
+# ticker="AAPL"
+# start="2012-01-01"
+# end="2014-04-02"
+# 
+# download.file("http://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Research_Data_Factors_daily.zip","factors.zip")
+#   
+# factors=unz("factors.zip","F-F_Research_Data_Factors_daily.txt")
+# factors=read.table(factors,header=TRUE,skip=4,fill=TRUE)
+# n=nrow(factors)-1
+#   
+# factors=unz("factors.zip","F-F_Research_Data_Factors_daily.txt")
+# factors=read.table(factors,header=TRUE,skip=4,fill=TRUE,nrows=n)
+# row.names(factors)=(as.Date(row.names(factors),format="%Y%m%d"))
+# names(factors)[names(factors)=="Mkt.RF"]="MarketPremium"
+# 
+# factors=as.xts(factors/100,dateFormat="Date")
+#     
+# reg=buildReg(ticker,start,factors)
+# 
+# modelCAPM=lm(I(ret-RF)~MarketPremium,data=reg)
+# modelFF3=lm(I(ret-RF)~MarketPremium+SMB+HML,data=reg)
+#   
+# 
+# spec=ugarchspec(
+#   variance.model=list(
+#     model='sGARCH',
+#     garchOrder=c(1,1),
+#     submodel=NULL,
+#     external.regressors=NULL,
+#     variance.targeting=FALSE
+#   ),
+#   mean.model=list(
+#     armaOrder=c(0,0),
+#     include.mean=FALSE,
+#     archm=FALSE,
+#     archpow=0,
+#     arfima=FALSE,
+#     external.regressors=NULL,
+#     archex=FALSE
+#   ),
+#   distribution.model='sstd',
+# )
+# 
+# fit=ugarchfit(spec=spec,data=log(1+reg$ret))
+#   
+#saved the above stuff to workspace for faster test knits
+# load("testKnit.RData")
+# library(stargazer)
+# library(quantmod)
+# library(xts)
+# library(rugarch)
+# library(stargazer)
+
+@
+\section{Seeking Alpha}
+
+
+
+<<stargazer,results='asis',message=FALSE,echo=FALSE>>=
+
+stargazer(modelCAPM(),
+          modelFF3(),
+          dep.var.labels=input$ticker,
+          title=paste("Factor Loadings from",range(index(reg()))[1],"to",range(index(reg()))[2],":"),
+          column.labels=c("CAPM","FF 3-Factor"),
+          font.size="small"
+          )
+@
+\newpage
+\section{Risk Management}
+
+<<garch1,echo=FALSE,message=FALSE,warning=FALSE,results='hide'>>=
+plot(fit(),which=garchWhichPlot())
+@
+Some interpretation here.
+
+\end{document}

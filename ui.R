@@ -27,7 +27,7 @@ shinyUI(pageWithSidebar(
               ),
     downloadButton(outputId="downloadData",label="Download Data"),
     helpText("Data sourced from Ken French's website."),
-    downloadButton(outputId="downloadReport",label="Download Report (Under Construction)"),
+    downloadButton(outputId="downloadReport",label="Download Report"),
     helpText("The first results may take a while... as the monkey works to download and clean the required data... Things should be pretty smooth for any subsequent tickers. Some weird things happyen when the download button is clicked prematurely..."),
     img(src="monkey.jpg",height=180),
     br(),
@@ -35,7 +35,7 @@ shinyUI(pageWithSidebar(
     br(),
     selectInput(inputId="garchPlotType",label="What do you want to see for the GARCH?",
                 choices=list(
-                  "Seris with 1% VaR limites",
+                  "Series with 1% VaR limites",
                   "QQ-Plot"
                   ),
                 selected="Seris with 1% VaR limites",

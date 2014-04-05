@@ -3,6 +3,7 @@ library(quantmod)
 library(xts)
 library(rugarch)
 library(stargazer)
+library(knitr)
 #Load a bunch of useful goodies. Gosh I LOVE stargazer...
 
 shinyServer(function(input, output) {
@@ -74,7 +75,7 @@ shinyServer(function(input, output) {
     
   garchWhichPlot=reactive({
     switch(input$garchPlotType,
-           "Seris with 1% VaR limites"=2,
+           "Series with 1% VaR limites"=2,
            "QQ-Plot"=9
            )
   })
@@ -82,5 +83,26 @@ shinyServer(function(input, output) {
   output$garchPlot=renderPlot({
     plot(fit(),which=garchWhichPlot())
   })
+  
+  output$downloadReport=downloadHandler(filename="quickQuantsReport.pdf",
+                                        content=function(file){
+                                          #Thanks, to brechtdv
+                                          # generate PDF
+                                          knit2pdf("report.Rnw")
+                                          
+                                          # copy pdf to 'file'
+                                          file.copy("report.pdf", file)
+                                          
+                                          # delete generated files
+                                          file.remove("report.pdf", "report.tex",
+                                                      "report.aux", "report.log")
+                                          
+                                          # delete folder with plots
+                                          unlink("figure", recursive = TRUE)
+                                        },
+                                        contentType = "application/pdf"
+  )
+  
+  
   
 })
