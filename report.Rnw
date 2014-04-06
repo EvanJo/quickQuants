@@ -1,13 +1,9 @@
 \documentclass{scrartcl}
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
-\usepackage{multicol}
 \usepackage{hyperref}
-\usepackage{adjustbox}
 \usepackage{amsmath}
-\usepackage{sectsty}
 \graphicspath{{www/}}
-\allsectionsfont{\sffamily}
 \begin{document}
 \title{Financial Performance for }
 \author{\includegraphics[width=3cm]{monkey.jpg} \\ \href{https://evan.shinyapps.io/quickquants}{Quick Quants}}
