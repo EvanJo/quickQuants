@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \graphicspath{{www/}}
 \begin{document}
-\title{Financial Performance for }
+\title{Financial Performance for \Sexpr{input$ticker}}
 \author{\includegraphics[width=3cm]{monkey.jpg} \\ \href{https://evan.shinyapps.io/quickquants}{Quick Quants}}
 \maketitle
 <<getReactiveData,echo=FALSE,message=FALSE,warning=FALSE,results='hide'>>=
