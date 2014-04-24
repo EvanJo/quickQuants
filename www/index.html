@@ -6,6 +6,7 @@
   <script src="shared/jquery.js" type="text/javascript"></script>
   <script src="shared/shiny.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="shared/shiny.css"/>
+  <link rel="stylesheet" type="text/css" href="css/home.css">
   <script type="application/shiny-singletons">2fea64347ed1c65621bd8a0b5d1410971479e6bf,48140218b235d2bc58917def24b8a9f2a8d85f9f,657ab97fdd42abbf38d93a1fe0b5fded866852ad</script>
   <link rel="stylesheet" type="text/css" href="shared/bootstrap/css/bootstrap.min.css"/>
   <script src="shared/bootstrap/js/bootstrap.min.js"></script>
@@ -22,12 +23,14 @@
   <script src="shared/selectize/js/selectize.min.js"></script>
 </head>
 <body>
-
+<div id="github">
+       <a href="https://github.com/orgs/quickQuants"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+</div>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span12" style="padding: 10px 0px;">
-      <h1>Quick Quants</h1>
-       <a href="https://github.com/orgs/quickQuants/quickQuants"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+      <!--<h1>Quick Quants</h1> -->
+      <img style=" height: 200px" src="img/qq_full.png" alt="Quick Quants"/>
     </div>
   </div>
   <div class="row-fluid">
@@ -37,11 +40,11 @@
         <input id="ticker" type="text" value="AAPL"/>
         <span class="help-block">
           Do you need to 
-          <a target="_blank" href="http://finance.yahoo.com/q?s=&amp;ql=1">find your ticker</a>
-          ?
+          <a target="_blank" href="http://finance.yahoo.com/q?s=&amp;ql=1">Find your ticker?</a>
+          
         </span>
         <div id="dateRange" class="shiny-date-range-input input-daterange">
-          <label class="control-label" for="dateRange">Get data starting from:</label>
+          <label class="control-label" for="dateRange">Use data in the range:</label>
           <input class="input-small" type="text" data-date-language="en" data-date-weekstart="0" data-date-format="yyyy-mm-dd" data-date-start-view="decade" data-min-date="1927-01-01" data-initial-date="2012-04-10"/>
            to 
           <input class="input-small" type="text" data-date-language="en" data-date-weekstart="0" data-date-format="yyyy-mm-dd" data-date-start-view="decade" data-min-date="1927-01-01"/>
@@ -56,22 +59,28 @@
           Download Report
         </a>
         <span class="help-block">Reports are available once data is loaded!</span>
-        <img src="monkey.jpg" height="180"/>
+        <img src="img/monkey.jpg" height="180"/>
         <br/>
         <br/>
         <br/>
-        <label class="control-label" for="garchPlotType">Generalized Autoregressive Conditional Heteroskedasticity</label>
+        <label class="control-label" for="garchPlotType">GARCH type:</label>
         <select id="garchPlotType">
-          <option value="Series with 1% VaR limites">Series with 1% VaR limites</option>
+          <option value="Series with 1% VaR limites">Series with 1% VaR limits</option>
           <option value="QQ-Plot">QQ-Plot</option>
         </select>
         <script type="application/json" data-for="garchPlotType" data-nonempty="">{}</script>
       </form>
-      <span> Hit up <a href="https://twitter.com/quickquants"> @QuickQuants</a> with questions and feedback! We want to make this a better tool for you.</span>
+      <div id="contact">
+      <h4> Contact Us </h4>
+      <span> <a href="https://twitter.com/quickquants"> Twitter</a> </span> |
+      <span> <a href="https://github.com/orgs/quickQuants">GitHub</a></span> | 
+      <span><a href="mailto:quickquants@gmail.com"> quickquants@gmail.com </a></span>
+      
+      </div>
     </div>
     <div class="span8">
-      <div id="regTable" class="shiny-html-output"></div>
       <div id="garchPlot" class="shiny-plot-output" style="width: 100% ; height: 400px"></div>
+      <center><div id="regTable" class="shiny-html-output"></div></center>
     </div>
   </div>
 </div>
