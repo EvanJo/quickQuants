@@ -1,9 +1,9 @@
 # all requirements for quickQuants
 
-a = {"rugarch",
+a=c("rugarch",
 "quantmod",
 "shiny",
 "stargazer",
-"knitr" };
+"knitr" );
 
-sapply( a, library);
+sapply( a, library,character.only=TRUE);
